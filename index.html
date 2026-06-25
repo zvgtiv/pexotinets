@@ -1,0 +1,2268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Пехотинец | Тактический маркет снаряжения</title>
+    <link rel="icon" type="image/png" href="28-283790_banner-royalty-free-crosshair-weapons-guns-png-html.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-body: #f8f6f0;
+            --bg-elevated: #ffffff;
+            --bg-card: #ffffff;
+            --accent-primary: #b88642;
+            --accent-hover: #a06f34;
+            --accent-light: #ebd5b5;
+            --text-dark: #2c2a26;
+            --text-secondary: #5f5b55;
+            --border-light: #e8e3d9;
+            --shadow-soft: 0 15px 40px -15px rgba(0,0,0,0.12);
+            --shadow-hover: 0 25px 50px -18px rgba(0,0,0,0.2);
+            --transition-base: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .logo-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.6; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .animate-on-view {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 246, 240, 0.92);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+            transition: var(--transition-base);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 28px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo-main {
+            color: var(--text-dark);
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .logo-main::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: var(--transition-base);
+        }
+
+        .logo:hover .logo-main::after {
+            width: 100%;
+        }
+
+        .logo-star {
+            color: var(--accent-primary);
+            font-size: 20px;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            color: var(--text-secondary);
+            margin-left: 6px;
+            font-weight: 400;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 4px;
+            background: white;
+            padding: 4px;
+            border-radius: 50px;
+            border: 1px solid var(--border-light);
+            overflow-x: auto;
+            max-width: 100%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-item {
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition-base);
+            white-space: nowrap;
+        }
+
+        .tab-item.active {
+            background: var(--accent-primary);
+            color: white;
+            box-shadow: 0 2px 12px rgba(184, 134, 66, 0.3);
+        }
+
+        .tab-item:not(.active):hover {
+            color: var(--text-dark);
+            background: rgba(184, 134, 66, 0.08);
+        }
+
+        .tab-item.highlight {
+            color: var(--accent-primary);
+            border: 1px solid rgba(184, 134, 66, 0.3);
+        }
+
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-camo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://fons.grizly.club/uploads/posts/2025-06/04/17490383353016.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(0,0,0,0.75) 0%, 
+                rgba(0,0,0,0.5) 40%, 
+                rgba(0,0,0,0.3) 70%,
+                rgba(0,0,0,0.15) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-bg-accent {
+            position: absolute;
+            right: -5%;
+            top: 15%;
+            width: 55%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(184, 134, 66, 0.12) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 1;
+            animation: pulseGlow 6s ease-in-out infinite alternate;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+            padding: 40px 0;
+            text-align: left;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-light);
+            margin-bottom: 28px;
+            border-left: 3px solid var(--accent-primary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 28px;
+            color: #ffffff;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.9s ease;
+        }
+
+        .hero h1 span {
+            color: var(--accent-light);
+            border-bottom: 4px solid var(--accent-primary);
+            padding-bottom: 4px;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 44px;
+            max-width: 560px;
+            line-height: 1.7;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.1s ease;
+        }
+
+        .btn {
+            padding: 15px 34px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition-base);
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(184, 134, 66, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(184, 134, 66, 0.5);
+        }
+
+        .btn-outline {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            border: 1.5px solid rgba(255,255,255,0.4);
+            color: white;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.25);
+            border-color: var(--accent-light);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .stats-section {
+            padding: 60px 0;
+            background: white;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent-primary);
+            font-family: 'Playfair Display', serif;
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 70px 0;
+        }
+
+        .feature-card {
+            background: var(--bg-elevated);
+            padding: 36px 28px;
+            border-radius: 30px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: var(--transition-base);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-primary);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: var(--transition-base);
+        }
+
+        .feature-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-hover);
+            background: linear-gradient(135deg, #ffffff, #fcf9f4);
+        }
+
+        .feature-card i {
+            font-size: 44px;
+            color: var(--accent-primary);
+            margin-bottom: 18px;
+            display: inline-block;
+            transition: var(--transition-base);
+        }
+
+        .feature-card:hover i {
+            transform: scale(1.1) rotate(-5deg);
+            color: var(--accent-hover);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .popular-section, .info-page-section {
+            padding: 70px 0;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-header h2 {
+            font-size: 44px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .section-header h2 span {
+            color: var(--accent-primary);
+            position: relative;
+        }
+
+        .section-header h2 span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-primary);
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 17px;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: 1px solid var(--border-light);
+            background: white;
+            font-size: 15px;
+            min-width: 300px;
+            transition: var(--transition-base);
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(184, 134, 66, 0.15);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-btn {
+            padding: 12px 28px;
+            border-radius: 40px;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition-base);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .search-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(184, 134, 66, 0.3);
+        }
+
+        .search-clear-btn {
+            padding: 12px 20px;
+            border-radius: 40px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .search-clear-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-dark);
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .filter-chip {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 10px 28px;
+            border-radius: 40px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-base);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .filter-chip:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-dark);
+        }
+
+        .filter-chip.active-chip {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: 0 2px 12px rgba(184, 134, 66, 0.25);
+        }
+
+        .sub-filter-bar {
+            display: none;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .sub-filter-bar.visible {
+            display: flex;
+        }
+
+        .sub-filter-chip {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 8px 24px;
+            border-radius: 40px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-base);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .sub-filter-chip:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-dark);
+        }
+
+        .sub-filter-chip.active-chip {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: 0 2px 12px rgba(184, 134, 66, 0.25);
+        }
+
+        .series-filter-bar {
+            display: none;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .series-filter-bar.visible {
+            display: flex;
+        }
+
+        .series-filter-chip {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 8px 24px;
+            border-radius: 40px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-base);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .series-filter-chip:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-dark);
+        }
+
+        .series-filter-chip.active-chip {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: 0 2px 12px rgba(184, 134, 66, 0.25);
+        }
+
+        .brand-filter-bar {
+            display: none;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .brand-filter-bar.visible {
+            display: flex;
+        }
+
+        .brand-filter-chip {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 8px 24px;
+            border-radius: 40px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-base);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .brand-filter-chip:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-dark);
+        }
+
+        .brand-filter-chip.active-chip {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: 0 2px 12px rgba(184, 134, 66, 0.25);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: var(--transition-base);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            cursor: pointer;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-card .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: #ffffff;
+            padding: 20px;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: block;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.04);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: var(--accent-primary);
+            color: white;
+            padding: 5px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px rgba(184, 134, 66, 0.25);
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-cat {
+            font-size: 11px;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 8px 0;
+            line-height: 1.4;
+            color: var(--text-dark);
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-primary);
+            margin-top: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .no-results i {
+            font-size: 48px;
+            color: var(--border-light);
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .about-modern {
+            background: linear-gradient(135deg, #f5f2ea 0%, #faf8f2 100%);
+            padding: 110px 0 90px;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 42px;
+            margin-bottom: 28px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        .about-text h3 span {
+            color: var(--accent-primary);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .milestone-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin: 32px 0;
+        }
+
+        .milestone {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .milestone i {
+            color: var(--accent-primary);
+            font-size: 24px;
+            width: 32px;
+            text-align: center;
+        }
+
+        .about-img-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-img {
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            border: 2px solid white;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .owner-badge {
+            background: white;
+            border: 1px solid var(--accent-primary);
+            padding: 20px 25px;
+            border-radius: 20px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 5;
+            width: 88%;
+            max-width: 360px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .owner-badge h4 {
+            color: var(--accent-primary);
+            font-size: 18px;
+        }
+
+        .owner-badge p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+            margin-top: 40px;
+        }
+
+        .info-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 44px 40px;
+            border-radius: 32px;
+            transition: var(--transition-base);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .info-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .info-card h3 {
+            font-size: 26px;
+            color: var(--accent-primary);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card ul li {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 28px;
+            line-height: 1.6;
+        }
+
+        .info-card ul li::before {
+            content: "➔";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .info-card ul li strong {
+            color: var(--text-dark);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 34px;
+            border-radius: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-base);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .review-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .review-stars {
+            color: var(--accent-primary);
+            margin-bottom: 16px;
+            font-size: 16px;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .review-author {
+            font-weight: bold;
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-light);
+            padding-top: 20px;
+        }
+
+        .booking-section {
+            padding: 40px 0 80px;
+        }
+
+        .booking-card {
+            background: white;
+            border-radius: 40px;
+            padding: 55px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .booking-card h2 {
+            font-size: 36px;
+            margin-bottom: 18px;
+            color: var(--text-dark);
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--bg-body);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            color: var(--text-dark);
+            font-size: 15px;
+            transition: var(--transition-base);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(184, 134, 66, 0.15);
+        }
+
+        .submit-btn {
+            background: var(--accent-primary);
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 32px;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition-base);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(184, 134, 66, 0.2);
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: scale(1.01);
+            box-shadow: 0 8px 25px rgba(184, 134, 66, 0.3);
+        }
+
+        .footer {
+            background: white;
+            border-top: 1px solid var(--border-light);
+            padding: 70px 0 35px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+        }
+
+        .footer-logo {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 18px;
+            display: inline-block;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 25px;
+        }
+
+        .social-link {
+            background: var(--bg-body);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            transition: var(--transition-base);
+            font-size: 18px;
+            border: 1px solid var(--border-light);
+        }
+
+        .social-link:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-4px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 4px 15px rgba(184, 134, 66, 0.2);
+        }
+
+        .footer-nav-link {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            margin-bottom: 14px;
+            display: block;
+            font-size: 14px;
+            text-align: left;
+            transition: var(--transition-base);
+        }
+
+        .footer-nav-link:hover {
+            color: var(--accent-primary);
+            transform: translateX(5px);
+        }
+
+        /* --- Стили для карусели партнёров в подвале --- */
+        .partner-carousel-container {
+            margin-bottom: 12px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .partner-carousel-track {
+            display: flex;
+            gap: 20px;
+            animation: scrollPartners 12s linear infinite;
+            width: max-content;
+        }
+
+        .partner-item {
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            white-space: nowrap;
+            background: var(--bg-body);
+            padding: 6px 14px;
+            border-radius: 30px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition-base);
+            font-family: 'Inter', sans-serif;
+        }
+        .partner-item:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        @keyframes scrollPartners {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Остановка анимации при наведении */
+        .partner-carousel-container:hover .partner-carousel-track {
+            animation-play-state: paused;
+        }
+
+        .footer-partner-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(44, 42, 38, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .modal-card {
+            background: white;
+            max-width: 950px;
+            width: 100%;
+            border-radius: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+            animation: scaleIn 0.3s ease;
+            max-height: 90vh;
+        }
+
+        .modal-image-area {
+            background: #f0ede6;
+            padding: 30px 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .modal-image-wrapper {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            box-shadow: inset 0 0 0 1px var(--border-light);
+            position: relative;
+            cursor: none;
+            min-height: 350px;
+        }
+
+        #modalImg {
+            width: 100%;
+            height: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            display: block;
+            transition: none;
+            position: relative;
+            transform-origin: 0 0;
+            background: #ffffff;
+            padding: 20px;
+        }
+
+        .zoom-lens {
+            display: none;
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border: 3px solid var(--accent-primary);
+            border-radius: 50%;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+            z-index: 5;
+            background-color: white;
+            background-size: 600% 600%;
+        }
+
+        .modal-image-wrapper.zoomed .zoom-lens {
+            display: block;
+        }
+
+        .modal-hint {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .modal-hint i {
+            margin-right: 6px;
+        }
+
+        .modal-info-area {
+            padding: 40px 35px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        .modal-info-area .product-cat {
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        #modalTitle {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        #modalDesc {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-size: 15px;
+        }
+
+        .modal-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 28px;
+            border-top: 1px solid var(--border-light);
+            padding-top: 24px;
+        }
+
+        #modalPrice {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent-primary);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+            justify-content: center;
+            min-width: 140px;
+        }
+
+        .btn-secondary {
+            background: var(--bg-body);
+            border: 1px solid var(--border-light);
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-light);
+        }
+
+        #closeModalBtn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition-base);
+            margin-top: 12px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        #closeModalBtn:hover {
+            color: var(--text-dark);
+        }
+
+        .modal-badge {
+            display: inline-block;
+            background: var(--accent-primary);
+            color: white;
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 760px) {
+            .modal-card {
+                grid-template-columns: 1fr;
+                max-height: 95vh;
+                border-radius: 28px;
+            }
+            .modal-image-area {
+                padding: 20px 20px 15px;
+            }
+            #modalImg {
+                max-height: 220px;
+                padding: 12px;
+            }
+            .modal-info-area {
+                padding: 20px 24px 24px;
+            }
+            #modalTitle {
+                font-size: 22px;
+            }
+            #modalPrice {
+                font-size: 26px;
+            }
+            .zoom-lens {
+                width: 120px;
+                height: 120px;
+            }
+            .modal-actions .btn {
+                min-width: 100px;
+                font-size: 12px;
+                padding: 12px 20px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .hero h1 { font-size: 38px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .about-container, .booking-card, .footer-grid, .info-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .stat-number { font-size: 36px; }
+            .booking-card { padding: 30px; }
+            .section-header h2 { font-size: 34px; }
+            .header-container { padding: 12px 16px; }
+            .tab-item { padding: 6px 14px; font-size: 10px; }
+            .footer-grid { gap: 30px; }
+            .hero-content { text-align: left; padding: 20px 0; }
+            .search-input { min-width: 200px; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .stat-number { font-size: 28px; }
+            .stat-label { font-size: 11px; }
+            .hero h1 { font-size: 30px; }
+            .search-input { min-width: 150px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-container">
+        <a href="#" class="logo" data-nav="home" style="text-decoration: none;">
+            <span class="logo-main">ПЕХОТИНЕЦ</span>
+            <span class="logo-star">✦</span>
+            <span class="logo-sub">TACTICAL GEAR</span>
+        </a>
+        <div class="nav-tabs">
+            <button class="tab-item active" data-nav="home">Главная</button>
+            <button class="tab-item" data-nav="catalog">Каталог</button>
+            <button class="tab-item" data-nav="shipping">Доставка и Оплата</button>
+            <button class="tab-item" data-nav="reviews">Отзывы</button>
+            <button class="tab-item" data-nav="about">О нас</button>
+            <button class="tab-item highlight" data-nav="booking">Бронь</button>
+        </div>
+    </div>
+</header>
+
+<!-- ГЛАВНАЯ СТРАНИЦА -->
+<div id="homePage">
+    <section class="hero">
+        <div class="hero-camo-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-bg-accent"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">С 2006 года в Кингисеппе</div>
+                <h1>Снаряжение с <span>характером</span><br> для настоящих мужчин</h1>
+                <p class="hero-desc">Рыболовные снасти, оптика для точных попаданий, надежная пневматика и легальные средства самообороны.</p>
+                <div class="btn-group">
+                    <button class="btn btn-primary" data-nav="catalog"><i class="fas fa-crosshairs"></i> В арсенал</button>
+                    <button class="btn btn-outline" data-nav="booking"><i class="fas fa-shield-alt"></i> Забронировать онлайн</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">19</div>
+                    <div class="stat-label">Лет на рынке</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">ведущих брендов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2500+</div>
+                    <div class="stat-label">товаров в наличии</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40 000+</div>
+                    <div class="stat-label">постоянных покупателей</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="feature-grid">
+            <div class="feature-card"><i class="fas fa-fish"></i><h3>Трофейная рыбалка</h3><p>Удилища Mikado, спиннинги и катушки Maidi, снасти на любого хищника</p></div>
+            <div class="feature-card"><i class="fas fa-eye"></i><h3>Оптика</h3><p>Бинокли, монокуляры, оптические и коллиматорные прицелы</p></div>
+            <div class="feature-card"><i class="fas fa-user-shield"></i><h3>Самооборона</h3><p>Аэрозольные балончики - ШПАГА, BLACK, BLACK LADY</p></div>
+        </div>
+    </div>
+
+    <section class="popular-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Популярный <span>выбор</span></h2>
+                <p>Хиты продаж и проверенное снаряжение по мнению наших клиентов</p>
+            </div>
+            <div id="popularProductsGrid" class="products-grid"></div>
+        </div>
+    </section>
+</div>
+
+<!-- КАТАЛОГ -->
+<div id="catalogPage" style="display: none; padding-top: 110px;">
+    <div class="container">
+        <div class="section-header"><h2>Наш <span>арсенал</span></h2><p>Выберите категорию и нажмите на товар для деталей</p></div>
+        
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск товаров...">
+            <button id="searchBtn" class="search-btn"><i class="fas fa-search"></i> Найти</button>
+            <button id="clearSearchBtn" class="search-clear-btn"><i class="fas fa-times"></i> Очистить</button>
+        </div>
+        
+        <div class="filter-bar" id="filterBar"></div>
+        <div class="sub-filter-bar" id="subFilterBar">
+            <button class="sub-filter-chip active-chip" data-sub="all">Все товары</button>
+            <button class="sub-filter-chip" data-sub="Удочки">Удочки</button>
+            <button class="sub-filter-chip" data-sub="Воблеры">Воблеры</button>
+            <button class="sub-filter-chip" data-sub="Катушки">Катушки</button>
+        </div>
+        <div class="series-filter-bar" id="seriesFilterBar">
+            <button class="series-filter-chip active-chip" data-series="all">Все серии</button>
+            <button class="series-filter-chip" data-series="GB">GB</button>
+            <button class="series-filter-chip" data-series="SWA">SWA</button>
+            <button class="series-filter-chip" data-series="SFB">SFB</button>
+            <button class="series-filter-chip" data-series="V">V</button>
+            <button class="series-filter-chip" data-series="TB">TB</button>
+            <button class="series-filter-chip" data-series="TW">TW</button>
+        </div>
+        <div class="brand-filter-bar" id="brandFilterBar">
+            <button class="brand-filter-chip active-chip" data-brand="all">Все бренды</button>
+            <button class="brand-filter-chip" data-brand="EKOL">EKOL</button>
+            <button class="brand-filter-chip" data-brand="BORNER">BORNER</button>
+            <button class="brand-filter-chip" data-brand="BARINOV">БАРИНОВ</button>
+            <button class="brand-filter-chip" data-brand="MARYCHEV">МАРЫЧЕВ</button>
+        </div>
+        <div id="productsGrid" class="products-grid"></div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <p>По вашему запросу ничего не найдено</p>
+            <p style="font-size: 14px; margin-top: 8px;">Попробуйте изменить поисковый запрос</p>
+        </div>
+    </div>
+</div>
+
+<!-- ДОСТАВКА И ОПЛАТА -->
+<div id="shippingPage" style="display: none;" class="info-page-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Доставка и <span>Оплата</span></h2>
+            <p>Прозрачные условия, быстрая сборка и отправка по всей стране</p>
+        </div>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3><i class="fas fa-truck"></i> Способы получения</h3>
+                <ul>
+                    <li><strong>Самовывоз в Кингисеппе:</strong> Заберите из магазина бесплатно через 15 минут после подтверждения онлайн-брони.</li>
+                    <li><strong>Транспортная компания СДЭК:</strong> Быстрая доставка до пунктов выдачи или курьером до вашей двери (по тарифу ТК).</li>
+                    <li><strong>Почта России:</strong> Отправка во все регионы, включая самые отдаленные населенные пункты.</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-credit-card"></i> Способы оплаты</h3>
+                <ul>
+                    <li><strong>При самовывозе:</strong> Наличными или банковской картой в нашем офлайн-магазине.</li>
+                    <li><strong>При доставке по РФ:</strong> Безопасная онлайн-оплата по выставленному счету или СБП перед отправкой товара.</li>
+                    <li><strong>Для юридических лиц:</strong> Безналичный расчет с предоставлением полного пакета закрывающих документов.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ОТЗЫВЫ -->
+<div id="reviewsPage" style="display: none;" class="info-page-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Отзывы <span>бойцов и рыбаков</span></h2>
+            <p>Что говорят о качестве нашего снаряжения постоянные клиенты</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div>
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"Заказывал здесь спиннинг и катушку. Владелец лично проконсультировал, подсказал по тесту. На Луге уже опробовал, щука на 3 кг вышла без проблем! Магазину респект!"</p>
+                </div>
+                <div class="review-author"><span>Сергей К.</span><span>г. Кингисепп</span></div>
+            </div>
+            <div class="review-card">
+                <div>
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"Брала BLACK 75мл для самообороны. Всё сертифицировано, сроки годности свежие. Оформила бронь на сайте, забрала через 10 минут. Быстро и профессионально."</p>
+                </div>
+                <div class="review-author"><span>Анна Д.</span><span>г. Сланцы</span></div>
+            </div>
+            <div class="review-card">
+                <div>
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"Отличный выбор тактической оптики и пневматики. Долго искал PU 3.5x для коллекции. Цены адекватные, не накрученные. Буду обращаться ещё!"</p>
+                </div>
+                <div class="review-author"><span>Игорь Петрович</span><span>г. Санкт-Петербург</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- О НАС -->
+<div id="aboutPage" style="display: none;">
+    <div class="about-modern">
+        <div class="container about-container">
+            <div class="about-text">
+                <h3>Пехотинец — <span>тактическая душа</span> Кингисеппа</h3>
+                <p><strong>Надёжное снаряжение для тех, кто привык рассчитывать только на себя.</strong> В «Пехотинце» мы собрали лучшее: пневматические пистолеты и винтовки, спиннинги и все для рыбалки, бинокли и компактные средства самообороны. Каждый товар проверен в деле — рыбаками, охотниками и теми, для кого безопасность не пустой звук.</p>
+                <div class="milestone-list">
+                    <div class="milestone"><i class="fas fa-shield-alt"></i> <span>Сертифицированная продукция и легальные средства защиты</span></div>
+                    <div class="milestone"><i class="fas fa-users"></i> <span>Консультации от практикующих рыбаков и тактиков</span></div>
+                    <div class="milestone"><i class="fas fa-bolt"></i> <span>Быстрая сборка интернет-заказов за 15 минут</span></div>
+                </div>
+                <p>Мы работаем с 2006 года. За это время вокруг магазина сформировалось настоящее братство увлеченных людей. Приезжайте, делитесь историями с выездов, выбирайте проверенный инвентарь!</p>
+            </div>
+            <div class="about-img-wrapper">
+                <div class="about-img">
+                    <img src="owner-photo.jpg" alt="Владелец магазина Пехотинец" onerror="this.src='owner-photo.jpg'">
+                </div>
+                <div class="owner-badge">
+                    <h4>Опыт, проверенный практикой</h4>
+                    <p>Снаряжаем на крупные трофеи и серьезные задачи</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- БРОНИРОВАНИЕ -->
+<div id="bookingPage" style="display: none; padding-top: 120px;">
+    <div class="container booking-section">
+        <div class="booking-card">
+            <div>
+                <h2>Забронировать <span style="color: var(--accent-primary);">товар</span></h2>
+                <p style="margin-bottom: 20px; color: var(--text-secondary);">Оставьте заявку — мы зарезервируем позицию на складе и свяжемся с вами в течение 10 минут.</p>
+                <div style="margin-top: 30px; background: rgba(184, 134, 66, 0.08); padding: 15px 20px; border-radius: 16px; border-left: 3px solid var(--accent-primary);">
+                    <i class="fas fa-clock" style="color: var(--accent-primary); margin-right: 10px;"></i> Работаем: Пн-Сб 10:00–19:00
+                </div>
+            </div>
+            <div>
+                <form id="bookingForm" action="https://formspree.io/f/mzdwnkbd" method="POST">
+                    <div class="form-group"><label>Имя</label><input type="text" name="name" required></div>
+                    <div class="form-group"><label>Телефон</label><input type="tel" name="phone" required></div>
+                    <div class="form-group"><label>Категория</label><select name="category"><option>Рыбалка</option><option>Оптика</option><option>Пневматика</option><option>Самооборона</option><option>Ножи</option></select></div>
+                    <div class="form-group"><label>Что бронируем?</label><textarea name="order" rows="3" placeholder="Модель, размер, количество"></textarea></div>
+                    <button class="submit-btn" type="submit">Отправить бронь <i class="fas fa-arrow-right"></i></button>
+                </form>
+                <div id="successMsg" style="display: none; background: #eaf5ea; padding: 20px; border-radius: 24px; margin-top: 20px; text-align: center; color: #2d5a2d; border: 1px solid #b3d9b3;">
+                    <i class="fas fa-check-circle" style="color: #3a8a3a; font-size: 28px; display: block; margin-bottom: 10px;"></i>
+                    ✅ Заявка принята! Менеджер свяжется с вами
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛКА -->
+<div id="modal" class="modal">
+    <div class="modal-card">
+        <div class="modal-image-area">
+            <div class="modal-image-wrapper" id="modalImageWrapper">
+                <img id="modalImg" src="" alt="Фото товара">
+                <div class="zoom-lens" id="zoomLens"></div>
+            </div>
+            <div class="modal-hint">
+                <i class="fas fa-search-plus"></i> Наведи на фото для увеличения
+            </div>
+        </div>
+
+        <div class="modal-info-area">
+            <div>
+                <div id="modalBadge" class="modal-badge" style="display: none;">Хит</div>
+                <div class="product-cat" id="modalCategory"></div>
+                <h2 id="modalTitle"></h2>
+                <p id="modalDesc"></p>
+            </div>
+            <div>
+                <div class="modal-price-row">
+                    <span id="modalPrice"></span>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" data-nav="booking" style="flex:1;">
+                        <i class="fas fa-shield-alt"></i> Забронировать
+                    </button>
+                </div>
+                <button id="closeModalBtn"><i class="fas fa-times"></i> Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ПОДВАЛ -->
+<footer class="footer">
+    <div class="container footer-grid">
+        <div>
+            <div class="footer-logo">ПЕХОТИНЕЦ ⚔️</div>
+            <p style="color: var(--text-secondary); font-size: 14px; max-width: 300px;">Снаряжение, которому доверяют. Рыбалка. Охота. Тактика. Безопасность.</p>
+            <div class="social-links">
+                <a href="https://vk.ru/luckypehotinec" target="_blank" class="social-link"><i class="fab fa-vk"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+        <div>
+            <h4 style="margin-bottom: 20px; font-size: 16px; color: var(--text-dark);">Навигация</h4>
+            <button class="footer-nav-link" data-nav="home">Главная</button>
+            <button class="footer-nav-link" data-nav="catalog">Каталог</button>
+            <button class="footer-nav-link" data-nav="shipping">Доставка и Оплата</button>
+            <button class="footer-nav-link" data-nav="reviews">Отзывы</button>
+            <button class="footer-nav-link" data-nav="about">О магазине</button>
+            <button class="footer-nav-link" data-nav="booking">Бронирование</button>
+        </div>
+        <div>
+            <h4 style="margin-bottom: 20px; font-size: 16px; color: var(--text-dark);">Партнёры</h4>
+            
+            <!-- Карусель партнёров -->
+            <div class="partner-carousel-container">
+                <div class="partner-carousel-track">
+                    <span class="partner-item">MAIDI</span>
+                    <span class="partner-item">REMINGTON</span>
+                    <span class="partner-item">БАРИНОВ</span>
+                    <span class="partner-item">МАРЫЧЕВ</span>
+                    <!-- Дублируем для бесшовной прокрутки -->
+                    <span class="partner-item">MAIDI</span>
+                    <span class="partner-item">REMINGTON</span>
+                    <span class="partner-item">БАРИНОВ</span>
+                    <span class="partner-item">МАРЫЧЕВ</span>
+                </div>
+            </div>
+            <div class="footer-partner-label">Официальные партнёры</div>
+        </div>
+        <div>
+            <h4 style="margin-bottom: 20px; font-size: 16px; color: var(--text-dark);">Контакты</h4>
+            <p style="margin-bottom: 8px;">
+                <i class="fas fa-map-marker-alt" style="color: var(--accent-primary); width: 20px;"></i> 
+                г. Кингисепп, Октябрьская улица 9,<br>
+                <span style="display: inline-block; padding-left: 20px;">ТЦ "Норд", этаж 1</span>
+            </p>
+            <p><i class="fas fa-envelope" style="color: var(--accent-primary); width: 20px;"></i> danilowewgeniy@mail.ru</p>
+        </div>
+    </div>
+    <div style="text-align: center; padding-top: 50px; color: #9a968e; font-size: 13px; border-top: 1px solid var(--border-light); margin-top: 40px;">
+        © 2026 «Пехотинец» — официальный маркет. Все права защищены.
+    </div>
+</footer>
+
+<script>
+    // --- БАЗА ДАННЫХ ТОВАРОВ (только Баринов и Марычев в ножах) ---
+    const productsData = [
+        // === РЫБАЛКА — УДОЧКИ MIKADO ===
+        { id:1, name:"Удочка телескоп. Микадо 5 м", category:"Рыбалка", subCategory:"Удочки", desc:"Телескопическая удочка Mikado длиной 5 метров. Прочный карбон, удобный хват, идеальна для ловли с берега.", price:"1 950 ₽", img:"https://avatars.mds.yandex.net/get-mpic/16922484/2a00000198c6f8e2b1cea8a97965842dde6c/orig", isPopular: true },
+        { id:2, name:"Удочка телескоп. Микадо 4 м", category:"Рыбалка", subCategory:"Удочки", desc:"Телескопическая удочка Mikado длиной 4 метра. Лёгкая и маневренная, подходит для рыбалки в стеснённых условиях.", price:"1 850 ₽", img:"https://st.aestatic.net/items-img/R/3/3/N/S0a3d8e91adba49e48cda39a1ef09e82ey.jpg_480x480.jpg", isPopular: false },
+        { id:3, name:"Удочка телескоп. Микадо 6 м", category:"Рыбалка", subCategory:"Удочки", desc:"Телескопическая удочка Mikado длиной 6 метров. Отличный выбор для ловли на дальних дистанциях.", price:"2 100 ₽", img:"https://ribak-ufa.ru/assets/images/products/26440/rc-t28381-quup-jt.jpg", isPopular: false },
+        { id:4, name:"Удочка телескоп. Микадо 5.4 м", category:"Рыбалка", subCategory:"Удочки", desc:"Телескопическая удочка Mikado длиной 5.4 метра. Универсальная длина для разных условий рыбалки.", price:"2 000 ₽", img:"https://fishingstore.ru/wa-data/public/shop/products/32/65/6532/images/30640/30640.650.jpg", isPopular: false },
+        { id:5, name:"Удочка телескоп. Микадо 3.6 м", category:"Рыбалка", subCategory:"Удочки", desc:"Телескопическая удочка Mikado длиной 3.6 метра. Компактная и удобная для ловли с лодки или в узких местах.", price:"1 800 ₽", img:"https://main-cdn.sbermegamarket.ru/big1/hlr-system/178/786/981/491/914/7/600008875749b0.jpeg", isPopular: false },
+        { id:6, name:"Удочка телескоп. Микадо 4.5 м", category:"Рыбалка", subCategory:"Удочки", desc:"Телескопическая удочка Mikado длиной 4.5 метра. Оптимальный баланс длины и веса для комфортной рыбалки.", price:"1 900 ₽", img:"https://fishprofi.ru/wa-data/public/shop/products/43/85/308543/images/78935/78935.0x460@2x.jpg", isPopular: false },
+
+        // === РЫБАЛКА — ВОБЛЕРЫ ===
+        { id:7, name:"Воблер", category:"Рыбалка", subCategory:"Воблеры", desc:"Отличная игра, привлекает хищника на любой акватории.", price:"350 ₽", img:"https://fmagazin.ru/_files/editor/images/pic/kos/voblery/zln_xs_118f/vobler_kosadaka_zelenyj_kitaets_zln_xs_118f_mht_m.jpg", isPopular: false },
+        { id:8, name:"Воблер", category:"Рыбалка", subCategory:"Воблеры", desc:"Глубина до 1.5м, привлекает даже пассивного хищника.", price:"350 ₽", img:"https://avatars.mds.yandex.net/get-mpic/10231887/2a0000019460fd3792495d1a7ee327243625/orig", isPopular: false },
+        { id:9, name:"Воблер", category:"Рыбалка", subCategory:"Воблеры", desc:"Дальний заброс и стабильная игра на течении.", price:"350 ₽", img:"https://avatars.mds.yandex.net/get-mpic/5352299/2a0000019a1e7dbb07890691721f42945090/orig", isPopular: false },
+        { id:10, name:"Воблер", category:"Рыбалка", subCategory:"Воблеры", desc:"Работает на любых глубинах, подходит для щуки и окуня.", price:"350 ₽", img:"https://www.huntworld.ru/upload/iblock/d69/pfgcxfksgv5fbcqf4i2moxqn6ikzk1ui/1899fb63_5875_11e6_8005_9c8e99302351_004.jpeg", isPopular: false },
+        { id:11, name:"Воблер", category:"Рыбалка", subCategory:"Воблеры", desc:"Отличный вариант для начинающих рыболовов.", price:"350 ₽", img:"https://avatars.mds.yandex.net/get-mpic/4934335/2a00000193fcdc0dbb21757058483e5f96fc/optimize", isPopular: false },
+        { id:12, name:"Воблер", category:"Рыбалка", subCategory:"Воблеры", desc:"Идеален для ловли на течении и в стоячей воде.", price:"350 ₽", img:"https://fmagazin.ru/_files/editor/images/pic/jackall/vobler_jackall_rerange_95sp_10_9g_hl_silver__black_b.jpg", isPopular: false },
+        
+        // === РЫБАЛКА — КАТУШКИ ===
+        // GB
+        { id:15, name:"Катушка безынерционная GB 1000", category:"Рыбалка", subCategory:"Катушки", series:"GB", desc:"Компактная катушка GB 1000 для лёгких снастей. 4 подшипника, отличный выбор для матчевой ловли.", price:"1 760 ₽", img:"https://ir.ozone.ru/s3/multimedia-1/c1000/6247006549.jpg", isPopular: false },
+        { id:24, name:"Катушка безынерционная GB 2000", category:"Рыбалка", subCategory:"Катушки", series:"GB", desc:"Катушка GB 2000 для универсальной ловли. 5 подшипников, удобная рукоятка.", price:"1 850 ₽", img:"https://ir.ozone.ru/s3/multimedia-1/c1000/6247006549.jpg", isPopular: false },
+        { id:15, name:"Катушка безынерционная GB 3000", category:"Рыбалка", subCategory:"Катушки", series:"GB", desc:"Надёжная безынерционная катушка GB 3000. 5 подшипников, алюминиевая шпуля, идеальна для ловли на спиннинг.", price:"1 900 ₽", img:"https://ir.ozone.ru/s3/multimedia-1/c1000/6247006549.jpg", isPopular: false },
+        { id:26, name:"Катушка безынерционная GB 4000", category:"Рыбалка", subCategory:"Катушки", series:"GB", desc:"Катушка GB 4000 для ловли на средних дистанциях. 6 подшипников, надёжный тормоз.", price:"1 950 ₽", img:"https://ir.ozone.ru/s3/multimedia-n/c1000/6283783271.jpg", isPopular: false },
+        { id:25, name:"Катушка безынерционная GB 5000", category:"Рыбалка", subCategory:"Катушки", series:"GB", desc:"Мощная катушка GB 5000 для карповой ловли. 6 подшипников, усиленная шпуля.", price:"2 160 ₽", img:"https://ir.ozone.ru/s3/multimedia-1/c1000/6247006549.jpg", isPopular: false },
+        // SWA
+        { id:16, name:"Катушка безынерционная SWA 1000", category:"Рыбалка", subCategory:"Катушки", series:"SWA", desc:"Лёгкая катушка SWA 1000 для ультралайта. 3 подшипника, отличный ход.", price:"2 400 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2024/05/Katushka-Maidi-SWA.png", isPopular: false },
+        { id:21, name:"Катушка безынерционная SWA 2000", category:"Рыбалка", subCategory:"Катушки", series:"SWA", desc:"Универсальная катушка SWA 2000. 5 подшипников, подходит для разных условий рыбалки.", price:"2 500 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2024/05/Katushka-Maidi-SWA.png", isPopular: false },
+        { id:17, name:"Катушка безынерционная SWA 3000", category:"Рыбалка", subCategory:"Катушки", series:"SWA", desc:"Универсальная катушка SWA 3000. 5 подшипников, подходит для ловли на средних дистанциях.", price:"2 600 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2024/05/Katushka-Maidi-SWA.png", isPopular: false },
+        { id:20, name:"Катушка безынерционная SWA 4000", category:"Рыбалка", subCategory:"Катушки", series:"SWA", desc:"Мощная катушка SWA 4000 для ловли крупной рыбы. 6 подшипников, прочная конструкция.", price:"2 700 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2024/05/Katushka-Maidi-SWA.png", isPopular: false },
+        // SFB
+        { id:19, name:"Катушка безынерционная SFB 1000", category:"Рыбалка", subCategory:"Катушки", series:"SFB", desc:"Катушка SFB 1000 с усиленной конструкцией. 5 подшипников, надёжный фрикцион.", price:"1 800 ₽", img:"https://ir.ozone.ru/s3/multimedia-w/c1000/6283809236.jpg", isPopular: false },
+        { id:30, name:"Катушка безынерционная SFB 2000", category:"Рыбалка", subCategory:"Катушки", series:"SFB", desc:"Универсальная катушка SFB 2000. 5 подшипников, подходит для разных снастей.", price:"1 950 ₽", img:"https://ir.ozone.ru/s3/multimedia-2/c1000/6283809242.jpg", isPopular: false },
+        { id:44, name:"Катушка безынерционная SFB 3000", category:"Рыбалка", subCategory:"Катушки", series:"SFB", desc:"Катушка SFB 3000 для универсальной ловли. 5 подшипников, усиленная конструкция.", price:"1 980 ₽", img:"https://avatars.mds.yandex.net/get-mpic/11404302/2a0000018bd4da9796d51c1aeadc369b4499/orig", isPopular: false },
+        { id:27, name:"Катушка безынерционная SFB 4000", category:"Рыбалка", subCategory:"Катушки", series:"SFB", desc:"Катушка SFB 4000 с усиленной конструкцией. 6 подшипников, для ловли на течении.", price:"2 050 ₽", img:"https://lumicom.ru/upload/iblock/3d2/5siz01g5q8x0glcng8dakwxf0kqaiqby/8139298e-b00c-11ec-a994-f4034357c59f_91e74a40-b00c-11ec-a994-f4034357c59f.jpg", isPopular: false },
+        { id:29, name:"Катушка безынерционная SFB 5000", category:"Рыбалка", subCategory:"Катушки", series:"SFB", desc:"Катушка SFB 5000 для крупной рыбы. 7 подшипников, прочный корпус.", price:"2 180 ₽", img:"https://avatars.mds.yandex.net/get-mpic/5221857/img_id4674360936824475774.jpeg/orig", isPopular: false },
+        { id:23, name:"Катушка безынерционная SFB 6000", category:"Рыбалка", subCategory:"Катушки", series:"SFB", desc:"Катушка SFB 6000 для ловли крупной рыбы на дальних дистанциях. 7 подшипников.", price:"2 500 ₽", img:"https://avatars.mds.yandex.net/get-mpic/5288039/2a0000018ecf369c7650ca1ed55622a2ce3f/orig", isPopular: false },
+        { id:22, name:"Катушка безынерционная SFB 7000", category:"Рыбалка", subCategory:"Катушки", series:"SFB", desc:"Крупная катушка SFB 7000 для морской рыбалки. 7 подшипников, коррозионностойкая конструкция.", price:"2 760 ₽", img:"https://avatars.mds.yandex.net/get-mpic/5288039/2a0000018ecf369c7650ca1ed55622a2ce3f/orig", isPopular: false },
+        // V
+        { id:33, name:"Катушка безынерционная V 500", category:"Рыбалка", subCategory:"Катушки", series:"V", desc:"Минималистичная катушка V 500 для лёгких снастей. 3 подшипника.", price:"1 900 ₽", img:"https://avatars.mds.yandex.net/get-mpic/20176395/2a0000019d6b1e95a2a330971eaa543bd60c/9hq", isPopular: false },
+        { id:28, name:"Катушка безынерционная V 800", category:"Рыбалка", subCategory:"Катушки", series:"V", desc:"Компактная катушка V 800 для ультралайта. 3 подшипника, минимальный вес.", price:"1 950 ₽", img:"https://avatars.mds.yandex.net/get-mpic/4794494/2a0000019170dc4001c3954485d2472fbcd6/orig", isPopular: false },
+        { id:45, name:"Катушка безынерционная V 2000", category:"Рыбалка", subCategory:"Катушки", series:"V", desc:"Универсальная катушка V 2000. 5 подшипников, подходит для разных снастей.", price:"2 100 ₽", img:"https://ir.ozone.ru/s3/multimedia-1-w/9418910900.jpg", isPopular: false },
+        { id:42, name:"Катушка безынерционная V 3000", category:"Рыбалка", subCategory:"Катушки", series:"V", desc:"Катушка V 3000 для ловли на средних дистанциях. 5 подшипников.", price:"2 150 ₽", img:"https://avatars.mds.yandex.net/get-mpic/17783160/2a0000019d6b2294c66d4d5f141340375277/450x600", isPopular: false },
+        { id:41, name:"Катушка безынерционная V 4000", category:"Рыбалка", subCategory:"Катушки", series:"V", desc:"Катушка V 4000 для универсальной ловли. 5 подшипников, надёжный корпус.", price:"2 200 ₽", img:"https://basket-16.wbbasket.ru/vol2600/part260099/260099988/images/big/1.webp", isPopular: false },
+        { id:31, name:"Катушка безынерционная V 5000", category:"Рыбалка", subCategory:"Катушки", series:"V", desc:"Мощная катушка V 5000 для ловли на дальних дистанциях. 5 подшипников.", price:"2 250 ₽", img:"https://avatars.mds.yandex.net/get-mpic/5220722/2a0000018e79db236a21b1161c3a75491794/orig", isPopular: false },
+        // TB
+        { id:43, name:"Катушка безынерционная TB 1000", category:"Рыбалка", subCategory:"Катушки", series:"TB", desc:"Компактная катушка TB 1000 для лёгкой ловли. 4 подшипника.", price:"1 100 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2021/02/Katushka-Maidi-TB.jpg", isPopular: false },
+        { id:34, name:"Катушка безынерционная TB 2000", category:"Рыбалка", subCategory:"Катушки", series:"TB", desc:"Катушка TB 2000 для универсальной ловли. 5 подшипников, удобная конструкция.", price:"1 200 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2021/02/Katushka-Maidi-TB.jpg", isPopular: false },
+        { id:35, name:"Катушка безынерционная TB 3000", category:"Рыбалка", subCategory:"Катушки", series:"TB", desc:"Катушка TB 3000 для ловли на средних дистанциях. 5 подшипников.", price:"1 400 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2021/02/Katushka-Maidi-TB.jpg", isPopular: false },
+        { id:40, name:"Катушка безынерционная TB 4000", category:"Рыбалка", subCategory:"Катушки", series:"TB", desc:"Катушка TB 4000 для ловли крупной рыбы. 6 подшипников.", price:"1 500 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2021/02/Katushka-Maidi-TB.jpg", isPopular: false },
+        { id:36, name:"Катушка безынерционная TB 5000", category:"Рыбалка", subCategory:"Катушки", series:"TB", desc:"Мощная катушка TB 5000 для крупной рыбы. 6 подшипников.", price:"1 600 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2021/02/Katushka-Maidi-TB.jpg", isPopular: false },
+        // TW
+        { id:38, name:"Катушка безынерционная TW 1000", category:"Рыбалка", subCategory:"Катушки", series:"TW", desc:"Компактная катушка TW 1000 для лёгких снастей. 4 подшипника.", price:"1 500 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2022/07/Katushka-Maidi-TW.jpg", isPopular: false },
+        { id:39, name:"Катушка безынерционная TW 2000", category:"Рыбалка", subCategory:"Катушки", series:"TW", desc:"Универсальная катушка TW 2000. 5 подшипников, отличный баланс.", price:"1 600 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2022/07/Katushka-Maidi-TW.jpg", isPopular: false },
+        { id:46, name:"Катушка безынерционная TW 3000", category:"Рыбалка", subCategory:"Катушки", series:"TW", desc:"Катушка TW 3000 для ловли на средних дистанциях. 5 подшипников.", price:"1 700 ₽", img:"https://avatars.mds.yandex.net/get-mpic/17854139/2a0000019b077c3676403642c6983c405432/orig", isPopular: false },
+        { id:37, name:"Катушка безынерционная TW 4000", category:"Рыбалка", subCategory:"Катушки", series:"TW", desc:"Катушка TW 4000 для ловли на течении. 6 подшипников, усиленная конструкция.", price:"1 800 ₽", img:"https://rybalka-opt.ru/wp-content/uploads/2022/07/Katushka-Maidi-TW.jpg", isPopular: false },
+
+        // === ОПТИКА ===
+        { id:47, name:"Бинокль Поиск 60-60", category:"Оптика", desc:"Классический бинокль 60-60 с многопокрытием линз. Отличная светосила и широкий угол обзора для наблюдения в полевых условиях.", price:"2 700 ₽", img:"https://ryboloff77.ru/image/catalog/NOZHI/1mix/Binokl/0_20221122_123829.jpg", isPopular: false },
+        { id:48, name:"Бинокль AW-116 60-60", category:"Оптика", desc:"Модель AW-116 с увеличением 60-60. Влагозащищенный корпус, идеален для морской и речной рыбалки.", price:"2 400 ₽", img:"https://www.megashnur.ru/image/cache/catalog/tovar/06515_1-500x500.JPG", isPopular: false },
+        { id:49, name:"Бинокль Blesklux 30-60", category:"Оптика", desc:"Бинокль 30-60 с регулируемым увеличением. Подходит для наблюдения за птицами и природой.", price:"1 000 ₽", img:"https://ir.ozone.ru/s3/multimedia-j/c1000/6273379087.jpg", isPopular: false },
+        { id:50, name:"Бинокль 60-60 WYJ-021", category:"Оптика", desc:"Бинокль WYJ-021 60-60 с призмой Бах-Кёнига. Компактный и легкий, удобен в походах.", price:"2 050 ₽", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_pj_ce_Si3jjk-iJYf3OE17oeilmv8cfRxFJGLnQTGLXw7RExyXhVFto&s=10", isPopular: false },
+        { id:51, name:"Бинокль 10-90-80 WYJ-035", category:"Оптика", desc:"Мощный бинокль с переменным увеличением 10-90, объектив 80мм. Для профессиональных наблюдений.", price:"3 500 ₽", img:"https://fonarimarket.ru/_imag_images/115/57044-binokl-10-90h80.jpg", isPopular: false },
+        { id:52, name:"Бинокль 70-70", category:"Оптика", desc:"Крупный бинокль с объективом 70мм и увеличением 70. Максимальная светосила для астрономических наблюдений.", price:"2 400 ₽", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjYH4vO85AcxAjRQwFJ5CzqWgdCiK3qBZSzZwJ8v_WyUvko-8p7JgpzSsv&s=10", isPopular: false },
+        { id:53, name:"Бинокль Bushnell 12*30 (Roof prism)", category:"Оптика", desc:"Брендовый бинокль Bushnell с крышеобразной призмой. Компактный, с отличной резкостью по всему полю.", price:"2 000 ₽", img:"https://www.huntworld.ru/upload/iblock/fd8/bobbthk6icc7uj0sjvl983xtaooss9hu/mp_binokl_bushnell_12kh30_roof_prism.jpeg", isPopular: true },
+        { id:54, name:"Бинокль 20-50 WYJ-026", category:"Оптика", desc:"Бинокль 20-50 с плавной регулировкой увеличения. Универсальный инструмент для туризма и спорта.", price:"2 600 ₽", img:"https://ryboloff77.ru/image/cache/catalog/NOZHI/1mix/Binokl/WYJ026%2020×50.jpeg-1200x800.png", isPopular: false },
+        { id:55, name:"Бинокль 50-50 WYJ-009", category:"Оптика", desc:"Компактный бинокль 50-50 с призмой Porro. Легкий и яркий, подходит для детей и начинающих наблюдателей.", price:"2 200 ₽", img:"https://main-cdn.sbermegamarket.ru/big2/hlr-system/575/245/622/134/2/600015636631b1.png", isPopular: false },
+        { id:56, name:"Бинокль 20-180-100 WYJ-045", category:"Оптика", desc:"Профессиональный бинокль с переменным увеличением 20-180 и объективом 100мм. Для астрономии и сверхдальнего наблюдения.", price:"4 400 ₽", img:"https://i0.wp.com/www.media-shop.by/wp-content/uploads/2026/02/Screenshot_117.jpg?fit=508%2C505&ssl=1", isPopular: false },
+        { id:57, name:"Бинокль БЦП 10-40", category:"Оптика", desc:"Бинокль БЦП 10-40 с увеличением 10 крат. Армейский стандарт, надежен в любых погодных условиях.", price:"7 000 ₽", img:"https://veber.ru/upload/seo_images/binokl-bpc-10x40-photo-4-30587cb7.webp", isPopular: false },
+        { id:58, name:"Бинокль 80-80", category:"Оптика", desc:"Мощный бинокль с увеличением 80 крат. Для наблюдения за удаленными объектами в ясную погоду.", price:"2 300 ₽", img:"https://main-cdn.sbermegamarket.ru/big1/hlr-system/193/628/081/432/914/4/600003405727b0.jpeg", isPopular: false },
+
+        // === ПНЕВМАТИКА ===
+        { id:59, name:"EKOL ES P92 Black", category:"Пневматика", brand:"EKOL", desc:"Металлический корпус, калибр 4,5 мм, 3 Дж. Эргономичная рукоять, высокое качество сборки. Идеальна для тренировок и развлекательной стрельбы.", price:"10 570 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/752/ut58cf2xe3pudacm486n7c471tozdoch.webp", isPopular: true },
+        { id:60, name:"EKOL ES 66 C Black", category:"Пневматика", brand:"EKOL", desc:"Металлический корпус, кал. 4,5 мм, 3 Дж. Компактная и мощная модель с улучшенной системой затвора.", price:"11 100 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/ab6/8pttbgv4hk9eo3pezaso4qt3x2alrk5h.webp", isPopular: true },
+        { id:61, name:"EKOL ES P92 FUME", category:"Пневматика", brand:"EKOL", desc:"Никелированный корпус, кал. 4,5 мм, 3 Дж. Стильный дизайн, устойчивый к коррозии и механическим повреждениям.", price:"11 700 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/4a9/m6rhkoijhu4rsvis1j75jfrd7f51cu77.webp", isPopular: false },
+        { id:62, name:"EKOL ES 55 FUME", category:"Пневматика", brand:"EKOL", desc:"Никелированный корпус, кал. 4,5 мм, 3 Дж. Укороченная версия для удобного хранения и транспортировки.", price:"11 400 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/807/ocpw7gcz41hhsw9qyhqov4mline64l8v.webp", isPopular: false },
+        { id:63, name:"EKOL ES 66 FUME", category:"Пневматика", brand:"EKOL", desc:"Никелированный корпус, кал. 4,5 мм, 3 Дж. Премиум-версия с улучшенной отделкой и идеальной балансировкой.", price:"11 500 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/7f3/o82bwvy93cl1jpp3l6eo9zf45mzm0sdp.webp", isPopular: false },
+        { id:64, name:"EKOL ES 66 C FUME", category:"Пневматика", brand:"EKOL", desc:"Никелированный корпус, кал. 4,5 мм, 3 Дж. Модель с компенсатором для снижения отдачи и повышения точности.", price:"11 400 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/176/7wlu73vyht95h8sa1ev22ospqvjmar0j.webp", isPopular: false },
+        { id:65, name:"EKOL ES 55 BLACK", category:"Пневматика", brand:"EKOL", desc:"Металлический корпус, кал. 4,5 мм, 3 Дж. Надежный выбор для начинающих стрелков, простота в обращении.", price:"10 800 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/856/fvi4f9q1scgugqaml0zyzie3u0xkue5f.webp", isPopular: false },
+        { id:66, name:"EKOL FOWLER", category:"Пневматика", brand:"EKOL", desc:"Переломный ствол, кал. 4,5 мм, 3 Дж. Классическая конструкция, отличающаяся простотой и надежностью.", price:"9 100 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/f9c/s10gujohgcj68uo5iyfeavfdlxzg8jd7.webp", isPopular: false },
+        { id:67, name:"EKOL ES P66 C Black", category:"Пневматика", brand:"EKOL", desc:"Металлический корпус, кал. 4,5 мм, 3 Дж. Улучшенная эргономика и надежная система предохранителей.", price:"10 550 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/583/e9042algcdtgqj01p24n4q3hgk3bo1i9.webp", isPopular: false },
+        { id:68, name:"EKOL ES P92 B Black", category:"Пневматика", brand:"EKOL", desc:"Металлический корпус, кал. 4,5 мм, 3 Дж. Максимально реалистичная модель с подвижным затвором (Blowback).", price:"14 250 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/e24/jp1g0p1ey5g0g003lmbaoi20dj6gzjwt.webp", isPopular: false },
+        { id:69, name:"EKOL ES 66 Black", category:"Пневматика", brand:"EKOL", desc:"Металлический корпус, кал. 4,5 мм, 3 Дж. Сбалансированная модель для точной стрельбы на разные дистанции.", price:"11 000 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/f5e/qhglezv9p5epeweue20jfvc5wdf6fowy.webp", isPopular: false },
+        { id:70, name:"EKOL ES P92 B FUME", category:"Пневматика", brand:"EKOL", desc:"Никелированный корпус, кал. 4,5 мм, 3 Дж. Премиум-версия с Blowback-затвором и стильным покрытием.", price:"14 900 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/945/kx3h937d9lsotpk2r57e60429dp50t4a.webp", isPopular: false },
+        { id:71, name:"EKOL ES P66 FUME", category:"Пневматика", brand:"EKOL", desc:"Никелированный корпус, кал. 4,5 мм, 3 Дж. Стильная версия с улучшенной отделкой и надежной механикой.", price:"10 800 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/b41/x5pxgw10p7vvw3xn2pukiynn8eltvtks.webp", isPopular: false },
+        { id:72, name:"EKOL ES P66 Black", category:"Пневматика", brand:"EKOL", desc:"Металлический корпус, кал. 4,5 мм, 3 Дж. Базовая модель с проверенной временем конструкцией.", price:"10 500 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/67e/2mn17yl9479wk70137t87vmofdnrb83d.webp", isPopular: false },
+        { id:73, name:"EKOL ES P66 C FUME", category:"Пневматика", brand:"EKOL", desc:"Никелированный корпус, кал. 4,5 мм, 3 Дж. Компактная версия с улучшенной эргономикой и надежностью.", price:"10 600 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/004/6par7km1g6mnszpn6zl2uy7c54gej6qi.webp", isPopular: false },
+        { id:74, name:"BORNER C11", category:"Пневматика", brand:"BORNER", desc:"Классическая модель, кал. 4,5 мм. Простая и надежная конструкция, идеальна для обучения стрельбе.", price:"5 700 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/af2/xpjexl8b35wwunyb5n66upnqoev71c1g.webp", isPopular: false },
+        { id:75, name:"BORNER PM-X", category:"Пневматика", brand:"BORNER", desc:"Современный дизайн, кал. 4,5 мм. Отличный выбор для активного отдыха и стрельбы по мишеням.", price:"5 850 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/edf/3fs23b72w70atd3clj4kia0qaq2solga.webp", isPopular: false },
+        { id:76, name:"BORNER C41 (Walther P.38)", category:"Пневматика", brand:"BORNER", desc:"Точная копия легендарного Walther P.38, кал. 4,5 мм. Идеальный выбор для коллекционеров и любителей истории.", price:"13 900 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/4f9/h4uf1sykg5ojiirqwg1vg7rw4auer7qi.webp", isPopular: false },
+        { id:77, name:"BORNER PM49", category:"Пневматика", brand:"BORNER", desc:"Эргономичная модель, кал. 4,5 мм. Удобная рукоять и отличный баланс для комфортной стрельбы.", price:"10 600 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/672/48aeo3nuxut8oj80v6qntafm5j3kq6q8.webp", isPopular: false },
+        { id:78, name:"BORNER CLT125 (Colt)", category:"Пневматика", brand:"BORNER", desc:"Копия легендарного Colt, кал. 4,5 мм. Стильный дизайн и надежная конструкция для уверенной стрельбы.", price:"9 100 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/9bd/trgu9453rql688dp5edp1b2kzmcqjj3k.webp", isPopular: false },
+        { id:79, name:"BORNER NGT-B Black", category:"Пневматика", brand:"BORNER", desc:"Тактическая модель, кал. 4,5 мм/BBs. Современный дизайн и улучшенные характеристики для продвинутых стрелков.", price:"16 800 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/ede/78nkpmxohwtaqss943kplqzsc565577d.webp", isPopular: false },
+        { id:80, name:"BORNER 17", category:"Пневматика", brand:"BORNER", desc:"Легкая и компактная модель, кал. 4,5 мм. Идеальный вариант для начинающих и детей.", price:"4 350 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/d52/wrbx283i24vaag4fpvi4z1dnd6ut5fkc.webp", isPopular: false },
+        { id:81, name:"BORNER W3000M (HK)", category:"Пневматика", brand:"BORNER", desc:"Копия известной модели HK, кал. 4,5 мм. Надежная конструкция и точность, проверенная временем.", price:"10 500 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/d9f/goolcv8t98lfb308el36z2o8q5rrn7ke.webp", isPopular: false },
+        { id:82, name:"BORNER 2022", category:"Пневматика", brand:"BORNER", desc:"Современная модель, кал. 4,5 мм. Отличный баланс цены и качества для повседневных тренировок.", price:"4 200 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/950/79o73xqpgqtgi0vnzg6efc0ecuplnw9p.webp", isPopular: false },
+        { id:83, name:"BORNER M84 (Beretta)", category:"Пневматика", brand:"BORNER", desc:"Точная копия легендарной Beretta M84, кал. 4,5 мм. Стиль, надежность и отличные стрелковые характеристики.", price:"10 300 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/063/nfjet2f427jc79m5rutpoohusvn1w0a1.webp", isPopular: false },
+
+        // === САМООБОРОНА ===
+        { id:84, name:"Баллончик аэрозольный 'Шпага' 25мл", category:"Самооборона", desc:"Струйный перцовый баллончик в компактном корпусе. Дальность струи до 3 метров, эффективен против животных и людей.", price:"790 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/71b/asn2x4qr34zeefgx2cs9aoan0o9e72pm.webp", isPopular: true },
+        { id:85, name:"Распылитель «Antidog» Шпага 65мл", category:"Самооборона", desc:"Надежный перцовый баллончик в удобном исполнении. Эффективная защита от агрессивных животных и хулиганов.", price:"850 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/4c0/4c0b9a1e4046de7ebb583b00d4d1bf3d.jpg", isPopular: false },
+        { id:86, name:"Баллончик аэроз. 'Black', 25 мл. (OC+CS)", category:"Самооборона", desc:"Мощная комбинированная смесь OC+CS в компактном баллончике. Максимальная эффективность в любой ситуации.", price:"990 ₽", img:"https://img.ohotaktiv.ru/upload/resize_cache/iblock/653/1000_1000_1/kek3v38fig3aszki9j86uv69817t4x1p.jpg", isPopular: false },
+        { id:87, name:"Баллончик аэрозольный 'Шок'", category:"Самооборона", desc:"Струйный перцовый баллончик с усиленной формулой. Быстрый и мощный эффект для надежной защиты.", price:"590 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/c1a/01dvp8r1ft5hhmf6j7n87wbmqkw0nzoc.webp", isPopular: false },
+        { id:88, name:"Баллончик аэрозольный 'Шпага' 75мл", category:"Самооборона", desc:"Увеличенный объем 75мл, дальность струи до 4 метров. Идеальное решение для длительной защиты.", price:"990 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/6da/xuoftjrvkvsa9q2ich77ixiss05kdbyc.webp", isPopular: false },
+        { id:89, name:"Баллончик аэрозольный 'Black' 75 мл. с доп.защитой (OC+CS)", category:"Самооборона", desc:"Комбинированная смесь OC+CS в большом баллончике с защитой от случайного нажатия. Максимальная надежность.", price:"1 190 ₽", img:"https://pnevmat24.ru/image/catalog/products/32192/gazovyy-ballonchik-black-x2-75-ml-s-dop-zashchitoy-3.jpg", isPopular: false },
+        { id:90, name:"Баллончик 'Жгучий перчик', 65 мл., струйный", category:"Самооборона", desc:"Проверенный струйный баллончик с эффективным составом. Удобный формат для повседневного ношения.", price:"790 ₽", img:"https://img.ohotaktiv.ru/upload/iblock/40d/rp58a9mk674v8eqjx71aifq5sdwxsn6m.webp", isPopular: false },
+        { id:91, name:"Баллончик аэрозольный 'Боец' струйный", category:"Самооборона", desc:"Струйный баллончик с увеличенной дальностью. Эффективен против агрессивных людей и животных.", price:"1290 ₽", img:"https://neva-target.ru/image/cache/700-700/data/multiuploader/53171.jpg", isPopular: false },
+        { id:92, name:"Баллончик аэрозольный 'Факел2' 75 мл", category:"Самооборона", desc:"Аэрозольный баллончик с мощным составом. Крупный объем для длительной защиты в экстремальных ситуациях.", price:"1450 ₽", img:"https://fonarimarket.ru/_imag_images/115/46745-gazoviy-ballonchik-fakel-2-75.jpg", isPopular: false },
+        { id:93, name:"Баллончик аэрозольный 'Кортик' 25мл", category:"Самооборона", desc:"Компактный аэрозольный баллончик для скрытого ношения. Удобно носить в кармане или сумочке.", price:"1300 ₽", img:"https://static.insales-cdn.com/images/products/1/1275/247522555/Screenshot_2.png", isPopular: false },
+        { id:94, name:"Баллончик аэрозольный 'Боец' струйный пенный", category:"Самооборона", desc:"Струйно-пенный баллончик с улучшенной адгезией. Пена препятствует смыванию состава водой.", price:"1290 ₽", img:"https://www.huntworld.ru/upload/iblock/cfd/aerozol_tekhkrim_boets_pennyy_100_ml.jpeg", isPopular: false },
+        { id:95, name:"Баллончик аэрозольный 'Боец' аэрозольно-струйный", category:"Самооборона", desc:"Универсальный баллончик с возможностью переключения режимов струя/аэрозоль для разных ситуаций.", price:"1290 ₽", img:"https://pnevmat24.ru/image/catalog/products/15963/gazovyy-ballonchik-boets-aerozolno-struynyy-100-ml-4.jpg", isPopular: false },
+        { id:96, name:"Баллончик аэрозольный 'Боец' струйный гелевый", category:"Самооборона", desc:"Гелевый баллончик с высокой вязкостью. Не смывается и эффективно блокирует дыхательные пути нарушителя.", price:"1290 ₽", img:"https://static.insales-cdn.com/images/products/1/4861/427225853/b7ceb0ce7fd6e11755c4c04380604d33.jpg", isPopular: false },
+        { id:97, name:"Баллончик аэрозольный 'Торнадо' 75ml с ЛЦУ", category:"Самооборона", desc:"Аэрозольный баллончик с лазерным целеуказателем (ЛЦУ) для точного прицеливания в темноте.", price:"1200 ₽", img:"https://static.insales-cdn.com/images/products/1/6127/916142063/gazovyy-ballonchik-tornado-struynyy-75-ml-s-ltsu-boets-shop.ru_01.jpg", isPopular: false },
+        { id:98, name:"Баллончик аэрозольный 'Black Lady' 25мл", category:"Самооборона", desc:"Компактный баллончик в стильном дизайне, специально для женщин. Помещается в сумочку или карман.", price:"990 ₽", img:"https://tempgun.ru/upload/iblock/c25/07f6eljuptyq7dwvkeduvwgeaebuao1w.jpg", isPopular: false },
+
+        // === НОЖИ БАРИНОВА ===
+        { id:201, name:"Нож Якут", category:"Ножи", brand:"BARINOV", desc:"Традиционный якутский нож с характерной асимметричной заточкой. Отличный выбор для охоты и рыбалки.", price:"9 500 ₽", img:"https://img.nozhikov.ru/images/products/1/2522/432376282/12.jpg", isPopular: true },
+        { id:202, name:"Нож НКВД-1", category:"Ножи", brand:"BARINOV", desc:"Классический нож в стиле НКВД. Клинок из высококачественной стали, удобная рукоять, надёжный хват.", price:"7 920 ₽", img:"https://img.nozhikov.ru/images/products/1/59/957562939/DSC06331-Edit.jpg", isPopular: false },
+        { id:203, name:"Нож Осетр", category:"Ножи", brand:"BARINOV", desc:"Универсальный нож с широким клинком. Подходит для разделки рыбы и мяса, а также для полевых работ.", price:"9 200 ₽", img:"https://кнайфы.рф/upload/iblock/132/rb8ubo1175ruxwg7tfl3kvk0bh8i3vh3/nozh_osetr_barin95_os2.jpg", isPopular: false },
+        { id:204, name:"Нож Вишня", category:"Ножи", brand:"BARINOV", desc:"Компактный нож с изящной рукоятью. Отличный выбор для повседневного ношения и мелких задач.", price:"4 400 ₽", img:"https://img-fotki.yandex.ru/get/9513/48878274.1f/0_14c876_c44202c8_XXL.jpg", isPopular: false },
+        { id:206, name:"Нож Пластунский", category:"Ножи", brand:"BARINOV", desc:"Нож для разведчиков и туристов. Прочный клинок с агрессивной заточкой, надёжная рукоять из композита.", price:"14 400 ₽", img:"https://img.nozhikov.ru/images/products/1/5633/511186433/DSC04300-редакт.jpg", isPopular: false },
+        { id:208, name:"Нож Пескарь", category:"Ножи", brand:"BARINOV", desc:"Компактный нож с тонким клинком. Отлично подходит для филигранной работы, разделки мелкой рыбы и птицы.", price:"4 400 ₽", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT88sy7dz4i7l3o1hi7y3umLZl2PICcUiylr1EerCwXdQ&s", isPopular: false },
+        { id:209, name:"Нож Нерпа", category:"Ножи", brand:"BARINOV", desc:"Надёжный нож с широким клинком. Подходит для работы в условиях крайнего севера, не боится мороза и влаги.", price:"4 750 ₽", img:"https://img.nozhikov.ru/r/F4w2JbE5fN4/rs:fit:588:588:1/plain/images/products/1/3705/3124727417/DSC03079-Edit.jpg@jpg", isPopular: false },
+        { id:211, name:"Нож Тигр", category:"Ножи", brand:"BARINOV", desc:"Мощный нож с агрессивным дизайном и прочным клинком. Создан для экстремальных условий.", price:"5 580 ₽", img:"https://кнайфы.рф/upload/iblock/692/hotjmfilnurotge9tdyfkxz1w6pd6hzt/nozh_tigr_barin_tigr.jpg", isPopular: false },
+        { id:213, name:"Нож Омуль-2", category:"Ножи", brand:"BARINOV", desc:"Специализированный нож для рыболовов. Длинный тонкий клинок позволяет быстро и аккуратно разделывать рыбу.", price:"8 400 ₽", img:"https://putnik-latnik.ru/images/stories/virtuemart/product/nozh-omul-2.jpg", isPopular: false },
+        { id:215, name:"Нож НКВД", category:"Ножи", brand:"BARINOV", desc:"Классический нож в стиле НКВД. Клинок из высококачественной стали, удобная рукоять, надёжный хват.", price:"7 250 ₽", img:"https://кнайфы.рф/upload/resize_cache/iblock/969/h6k2avdzdk298jtijt6a1tlqdpgemp9a/220_200_1/finka_nkvd_barin_fin_4_g.jpg", isPopular: false },
+        { id:218, name:"Нож Пират", category:"Ножи", brand:"BARINOV", desc:"Мощный нож с характерной формой клинка. Отлично подходит для туризма и выживания в дикой природе.", price:"9 600 ₽", img:"https://img.nozhikov.ru/images/products/1/1256/602842344/DSC07684-Edit.jpg", isPopular: false },
+        { id:219, name:"Нож Сокол-1", category:"Ножи", brand:"BARINOV", desc:"Складной нож с надёжным замком. Компактный, удобный для повседневного ношения.", price:"4 800 ₽", img:"https://img.nozhikov.ru/images/products/1/7746/970210882/DSC05561.jpg", isPopular: false },
+        { id:221, name:"Нож Тундра", category:"Ножи", brand:"BARINOV", desc:"Надёжный нож для работы в условиях крайнего севера. Не боится мороза и влаги, отличная стойкость.", price:"5 620 ₽", img:"https://avatars.mds.yandex.net/get-mpic/12281819/2a000001900d44a031f2cf50b67ad9eac67c/orig", isPopular: false },
+        { id:222, name:"Нож НР-40", category:"Ножи", brand:"BARINOV", desc:"Классический нож с клинком из дамасской стали. Отличный баланс и высокое качество заточки.", price:"5 720 ₽", img:"https://img.nozhikov.ru/images/products/1/5297/2184459441/DSC09427-Edit.jpg", isPopular: false },
+        { id:226, name:"Нож Барракуда", category:"Ножи", brand:"BARINOV", desc:"Специализированный нож для рыболовов. Длинный тонкий клинок позволяет быстро и аккуратно разделывать рыбу.", price:"4 700 ₽", img:"https://www.knife-vorsma.ru/wa-data/public/shop/products/74/89/8974/images/40177/40177.580@2x.jpg", isPopular: false },
+        { id:228, name:"Нож Ерш", category:"Ножи", brand:"BARINOV", desc:"Компактный нож с широким клинком. Отличный выбор для повседневного ношения и мелких задач.", price:"5 550 ₽", img:"https://img.nozhikov.ru/images/products/1/1397/647906677/Nozh_Ersh_stal_95H18_beresta.jpg", isPopular: false },
+
+        // === НОЖИ МАРЫЧЕВА ===
+        { id:301, name:"Нож складной 'Попутчик'", category:"Ножи", brand:"MARYCHEV", desc:"Складной нож для туризма и повседневного использования. Прочный клинок, удобная рукоять.", price:"8 850 ₽", img:"https://moscowknife.ru/upload/resize_cache/iblock/856/1024_1024_195ef8faed0e1d23a0b24718798ffd1d2/v30radxtbr1umzjufq59s1we101c1qhl.png", isPopular: false },
+        { id:302, name:"Нож складной 'Якут'", category:"Ножи", brand:"MARYCHEV", desc:"Складной нож в якутском стиле. Отличный выбор для коллекционеров и любителей традиционных форм.", price:"10 700 ₽", img:"https://static.insales-cdn.com/images/products/1/2986/404999082/large_IMG_3307.JPG", isPopular: false },
+        { id:303, name:"Нож складной «Актай-2»", category:"Ножи", brand:"MARYCHEV", desc:"Складной нож с клинком из дамасской стали. Премиальное качество, отличная стойкость заточки.", price:"9 500 ₽", img:"https://moscowknife.ru/upload/resize_cache/iblock/6cb/1024_1024_195ef8faed0e1d23a0b24718798ffd1d2/pecetcbtf5qt4cwfe61s3suw1qeyb9zo.png", isPopular: false },
+        { id:304, name:"Нож складной «Валдай»", category:"Ножи", brand:"MARYCHEV", desc:"Надёжный складной нож для повседневного использования. Компактный, удобный, с прочным замком.", price:"6 100 ₽", img:"https://static.insales-cdn.com/images/products/1/2985/404999081/IMG_3306.JPG", isPopular: false },
+        { id:305, name:"Нож складной «Варяг-2»", category:"Ножи", brand:"MARYCHEV", desc:"Усовершенствованная версия ножа Варяг. Улучшенный клинок и эргономичная рукоять.", price:"8 100 ₽", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhzjlUSyBa8r0OhuUfcmhOfKQTSiUJC6-8r5hM-aBwbXPT2HzIb8cBoKCM&s=10", isPopular: false },
+        { id:306, name:"Нож складной «Варяг»", category:"Ножи", brand:"MARYCHEV", desc:"Классический складной нож с прочным клинком. Проверенная временем конструкция.", price:"4 890 ₽", img:"https://knife-mag.ru/_sh/1/143m_2.jpg", isPopular: false },
+        { id:307, name:"Нож складной «Верный»", category:"Ножи", brand:"MARYCHEV", desc:"Надёжный складной нож с фиксированным замком. Отличный выбор для повседневного ношения.", price:"6 250 ₽", img:"https://img.air-gun.ru/images/big/115394.webp", isPopular: false },
+        { id:309, name:"Нож складной «Кайрос»", category:"Ножи", brand:"MARYCHEV", desc:"Складной нож с клинком из высококачественной стали. Надёжный замок, эргономичная рукоять.", price:"5 140 ₽", img:"https://knife-mag.ru/_sh/1/130.jpg", isPopular: false },
+        { id:311, name:"Нож складной «Морвин»", category:"Ножи", brand:"MARYCHEV", desc:"Складной нож с оригинальным дизайном и высоким качеством стали. Отличный выбор для коллекционеров.", price:"7 100 ₽", img:"https://moscowknife.ru/upload/resize_cache/iblock/c60/220_220_1/odz13bf3ysbwt1vjb99fxh3jyff0yrk6.JPG", isPopular: false },
+        { id:315, name:"Нож складной «Сормовский»", category:"Ножи", brand:"MARYCHEV", desc:"Классический складной нож с высоким качеством стали. Отличная заточка и надёжный замок.", price:"6 200 ₽", img:"https://static.insales-cdn.com/images/products/1/2776/727714520/large_IMG_0084_result.jpg", isPopular: false },
+        { id:316, name:"Нож складной «Страж 2»", category:"Ножи", brand:"MARYCHEV", desc:"Усовершенствованная версия ножа Страж. Улучшенный клинок и эргономичная рукоять.", price:"8 800 ₽", img:"https://marichevnn.ru/assets/images/laminat/kompozit/9.jpg", isPopular: false },
+        { id:317, name:"Нож складной «Эртиль-2»", category:"Ножи", brand:"MARYCHEV", desc:"Усовершенствованная версия ножа Эртиль. Компактный, удобный, с прочным замком.", price:"6 600 ₽", img:"https://russian-knife.ru/netcat_files/102/135/248.JPG", isPopular: false },
+        { id:318, name:"Нож складной «Ястреб»", category:"Ножи", brand:"MARYCHEV", desc:"Складной нож с агрессивным дизайном и прочным клинком. Отличный выбор для активного отдыха.", price:"3 950 ₽", img:"https://www.knife-vorsma.ru/wa-data/public/shop/products/68/97/9768/images/45107/45107.970.jpg", isPopular: false },
+    ];
+
+    let currentFilterCat = "all";
+    let currentSubFilter = "all";
+    let currentSeriesFilter = "all";
+    let currentBrandFilter = "all";
+    let searchQuery = "";
+
+    function renderPopularProducts() {
+        const popularGrid = document.getElementById("popularProductsGrid");
+        if (!popularGrid) return;
+        const popular = productsData.filter(p => p.isPopular);
+        popularGrid.innerHTML = popular.map(p => `
+            <div class="product-card" data-id="${p.id}" data-p='${JSON.stringify(p).replace(/'/g, "&apos;")}'>
+                <div class="product-badge">Хит</div>
+                <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/280x250/ffffff/b88642?text=Фото+недоступно'">
+                <div class="product-info">
+                    <div>
+                        <div class="product-cat">${p.category}</div>
+                        <div class="product-title">${p.name}</div>
+                    </div>
+                    <div class="product-price">${p.price}</div>
+                </div>
+            </div>
+        `).join('');
+        initProductCardListeners();
+    }
+
+    function renderCatalog() { 
+        let grid = document.getElementById("productsGrid"); 
+        if(!grid) return; 
+        
+        let filtered = productsData.filter(p => {
+            const categoryMatch = currentFilterCat === "all" || p.category === currentFilterCat;
+            const subMatch = currentSubFilter === "all" || p.subCategory === currentSubFilter;
+            const seriesMatch = currentSeriesFilter === "all" || p.series === currentSeriesFilter;
+            const brandMatch = currentBrandFilter === "all" || p.brand === currentBrandFilter;
+            const searchMatch = searchQuery === "" || p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.category.toLowerCase().includes(searchQuery.toLowerCase());
+            return categoryMatch && subMatch && seriesMatch && brandMatch && searchMatch;
+        });
+        
+        const noResults = document.getElementById("noResults");
+        if (filtered.length === 0) {
+            grid.innerHTML = '';
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+            grid.innerHTML = filtered.map(p => `
+                <div class="product-card" data-id="${p.id}" data-p='${JSON.stringify(p).replace(/'/g, "&apos;")}'>
+                    <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/280x250/ffffff/b88642?text=Фото+недоступно'">
+                    <div class="product-info">
+                        <div>
+                            <div class="product-cat">${p.category}${p.subCategory ? ' / ' + p.subCategory : ''}</div>
+                            <div class="product-title">${p.name}</div>
+                        </div>
+                        <div class="product-price">${p.price}</div>
+                    </div>
+                </div>
+            `).join(''); 
+        }
+        initProductCardListeners();
+    }
+
+    function setupFilters() { 
+        let cats = ["all","Рыбалка","Оптика","Пневматика","Самооборона","Ножи"]; 
+        let bar = document.getElementById("filterBar"); 
+        if(bar) { 
+            bar.innerHTML = cats.map(c => `<button class="filter-chip ${c === currentFilterCat ? 'active-chip' : ''}" data-fcat="${c}">${c === "all" ? "Все товары" : c}</button>`).join(''); 
+            document.querySelectorAll(".filter-chip").forEach(btn => btn.addEventListener("click",()=>{ 
+                currentFilterCat = btn.getAttribute("data-fcat"); 
+                currentSubFilter = "all";
+                currentSeriesFilter = "all";
+                currentBrandFilter = "all";
+                searchQuery = "";
+                document.getElementById("searchInput").value = "";
+                updateSubFilters();
+                updateSeriesFilters();
+                updateBrandFilters();
+                renderCatalog(); 
+                setupFilters(); 
+            })); 
+        } 
+    }
+
+    function updateSubFilters() {
+        const subBar = document.getElementById("subFilterBar");
+        const isFishing = currentFilterCat === "Рыбалка";
+        
+        if (isFishing) {
+            subBar.classList.add("visible");
+            document.querySelectorAll(".sub-filter-chip").forEach(btn => {
+                btn.classList.toggle("active-chip", btn.getAttribute("data-sub") === currentSubFilter);
+            });
+        } else {
+            subBar.classList.remove("visible");
+        }
+    }
+
+    function setupSubFilters() {
+        document.querySelectorAll(".sub-filter-chip").forEach(btn => {
+            btn.addEventListener("click", () => {
+                currentSubFilter = btn.getAttribute("data-sub");
+                currentSeriesFilter = "all";
+                updateSeriesFilters();
+                renderCatalog();
+                updateSubFilters();
+            });
+        });
+    }
+
+    function updateSeriesFilters() {
+        const seriesBar = document.getElementById("seriesFilterBar");
+        const isReels = currentFilterCat === "Рыбалка" && currentSubFilter === "Катушки";
+        
+        if (isReels) {
+            seriesBar.classList.add("visible");
+            document.querySelectorAll(".series-filter-chip").forEach(btn => {
+                btn.classList.toggle("active-chip", btn.getAttribute("data-series") === currentSeriesFilter);
+            });
+        } else {
+            seriesBar.classList.remove("visible");
+        }
+    }
+
+    function setupSeriesFilters() {
+        document.querySelectorAll(".series-filter-chip").forEach(btn => {
+            btn.addEventListener("click", () => {
+                currentSeriesFilter = btn.getAttribute("data-series");
+                renderCatalog();
+                updateSeriesFilters();
+            });
+        });
+    }
+
+    function updateBrandFilters() {
+        const brandBar = document.getElementById("brandFilterBar");
+        const isPneumatics = currentFilterCat === "Пневматика";
+        const isKnives = currentFilterCat === "Ножи";
+        
+        if (isPneumatics || isKnives) {
+            brandBar.classList.add("visible");
+            document.querySelectorAll(".brand-filter-chip").forEach(btn => {
+                btn.style.display = "";
+                if (isPneumatics && !["all","EKOL","BORNER"].includes(btn.getAttribute("data-brand"))) {
+                    btn.style.display = "none";
+                }
+                if (isKnives && !["all","BARINOV","MARYCHEV"].includes(btn.getAttribute("data-brand"))) {
+                    btn.style.display = "none";
+                }
+                btn.classList.toggle("active-chip", btn.getAttribute("data-brand") === currentBrandFilter);
+            });
+        } else {
+            brandBar.classList.remove("visible");
+        }
+    }
+
+    function setupBrandFilters() {
+        document.querySelectorAll(".brand-filter-chip").forEach(btn => {
+            btn.addEventListener("click", () => {
+                currentBrandFilter = btn.getAttribute("data-brand");
+                renderCatalog();
+                updateBrandFilters();
+            });
+        });
+    }
+
+    function setupSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const searchBtn = document.getElementById("searchBtn");
+        const clearBtn = document.getElementById("clearSearchBtn");
+
+        function performSearch() {
+            searchQuery = searchInput.value.trim();
+            renderCatalog();
+        }
+
+        searchBtn.addEventListener("click", performSearch);
+        searchInput.addEventListener("keyup", (e) => {
+            if (e.key === "Enter") performSearch();
+        });
+        clearBtn.addEventListener("click", () => {
+            searchInput.value = "";
+            searchQuery = "";
+            renderCatalog();
+        });
+    }
+
+    function openModal(product) {
+        document.getElementById("modalImg").src = product.img;
+        document.getElementById("modalTitle").innerText = product.name;
+        document.getElementById("modalCategory").innerText = product.category + (product.subCategory ? ' / ' + product.subCategory : '');
+        document.getElementById("modalDesc").innerText = product.desc;
+        document.getElementById("modalPrice").innerHTML = product.price;
+
+        const badge = document.getElementById("modalBadge");
+        if (product.isPopular) {
+            badge.style.display = "inline-block";
+        } else {
+            badge.style.display = "none";
+        }
+
+        const wrapper = document.getElementById("modalImageWrapper");
+        wrapper.classList.remove("zoomed");
+        const lens = document.getElementById("zoomLens");
+        lens.style.display = "none";
+
+        document.getElementById("modal").style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+
+    function setupZoom() {
+        const wrapper = document.getElementById("modalImageWrapper");
+        const img = document.getElementById("modalImg");
+        const lens = document.getElementById("zoomLens");
+
+        function moveLens(e) {
+            const rect = wrapper.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const lensSize = 180;
+            let lensX = x - lensSize/2;
+            let lensY = y - lensSize/2;
+            
+            lensX = Math.max(0, Math.min(lensX, rect.width - lensSize));
+            lensY = Math.max(0, Math.min(lensY, rect.height - lensSize));
+            
+            lens.style.left = lensX + 'px';
+            lens.style.top = lensY + 'px';
+            
+            const bgX = (x / rect.width) * 100;
+            const bgY = (y / rect.height) * 100;
+            lens.style.backgroundImage = `url('${img.src}')`;
+            lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
+            lens.style.backgroundSize = '600% 600%';
+        }
+
+        wrapper.addEventListener("mouseenter", () => {
+            wrapper.classList.add("zoomed");
+            lens.style.display = "block";
+        });
+
+        wrapper.addEventListener("mousemove", moveLens);
+
+        wrapper.addEventListener("mouseleave", () => {
+            wrapper.classList.remove("zoomed");
+            lens.style.display = "none";
+        });
+
+        wrapper.addEventListener("click", (e) => {
+            if (window.innerWidth <= 760) {
+                wrapper.classList.toggle("zoomed");
+                if (wrapper.classList.contains("zoomed")) {
+                    lens.style.display = "block";
+                    const rect = wrapper.getBoundingClientRect();
+                    const fakeEvent = {
+                        clientX: rect.left + rect.width/2,
+                        clientY: rect.top + rect.height/2
+                    };
+                    moveLens(fakeEvent);
+                } else {
+                    lens.style.display = "none";
+                }
+            }
+        });
+    }
+
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+        document.body.style.overflow = "auto";
+        const wrapper = document.getElementById("modalImageWrapper");
+        wrapper.classList.remove("zoomed");
+        document.getElementById("zoomLens").style.display = "none";
+    }
+
+    function initProductCardListeners() {
+        document.querySelectorAll(".product-card").forEach(c => {
+            c.onclick = null;
+            c.addEventListener("click", function(e) {
+                const productData = this.getAttribute("data-p");
+                if (productData) {
+                    try {
+                        const product = JSON.parse(productData);
+                        openModal(product);
+                    } catch (err) {
+                        console.error("Ошибка парсинга товара:", err);
+                    }
+                }
+            });
+        });
+    }
+
+    function showPage(page) { 
+        const pages = ["home", "catalog", "shipping", "reviews", "about", "booking"];
+        pages.forEach(p => {
+            const el = document.getElementById(p + "Page");
+            if (el) el.style.display = page === p ? "block" : "none";
+        });
+
+        if(page === "catalog") { 
+            renderCatalog(); 
+            setupFilters();
+            setupSubFilters();
+            setupSeriesFilters();
+            setupBrandFilters();
+            setupSearch();
+            updateSubFilters();
+            updateSeriesFilters();
+            updateBrandFilters();
+        } 
+        if(page === "home") {
+            renderPopularProducts();
+        }
+
+        document.querySelectorAll(".tab-item").forEach(t => t.classList.remove("active")); 
+        const activeTab = document.querySelector(`.tab-item[data-nav="${page}"]`);
+        if (activeTab) activeTab.classList.add("active"); 
+        window.scrollTo({top:0, behavior: 'smooth'}); 
+        closeModal();
+    }
+
+    document.querySelectorAll("[data-nav]").forEach(el => el.addEventListener("click", (e) => { 
+        let p = el.getAttribute("data-nav"); 
+        if(p) showPage(p); 
+    }));
+
+    const formBook = document.getElementById("bookingForm"); 
+    if(formBook) formBook.addEventListener("submit", async(e)=>{ 
+        e.preventDefault(); 
+        let btn=formBook.querySelector(".submit-btn"); 
+        btn.innerText="Отправка..."; 
+        btn.disabled = true;
+        let fd=new FormData(formBook); 
+        try{ 
+            let r=await fetch(formBook.action,{method:"POST",body:fd,headers:{'Accept':'application/json'}}); 
+            if(r.ok){ 
+                formBook.style.display="none"; 
+                document.getElementById("successMsg").style.display="block"; 
+            } else alert("Ошибка при отправке"); 
+        } catch(err){ alert("Сетевая ошибка"); } 
+        btn.innerText="Отправить бронь"; 
+        btn.disabled = false;
+    });
+
+    document.getElementById("closeModalBtn")?.addEventListener("click", closeModal);
+    window.addEventListener("click", (e) => {
+        if (e.target === document.getElementById("modal")) closeModal();
+    });
+
+    setupZoom();
+    showPage("home");
+</script>
+</body>
+</html>
